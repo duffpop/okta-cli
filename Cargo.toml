@@ -1,0 +1,8 @@
+[package]
+name = "okta-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+skim = "0.15.7"
+okta = "0.7.1"
