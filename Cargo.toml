@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 skim = "0.15.7"
 okta = "0.7.1"
+tokio = { version = "1.43", features = ["full"] }

@@ -1540,28 +1540,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_0
-                    - $ref: '#/components/schemas/AutoLoginApplication'
-                    - $ref: '#/components/schemas/BasicAuthApplication'
-                    - $ref: '#/components/schemas/BookmarkApplication'
-                    - $ref: '#/components/schemas/BrowserPluginApplication'
-                    - $ref: '#/components/schemas/OpenIdConnectApplication'
-                    - $ref: '#/components/schemas/Saml11Application'
-                    - $ref: '#/components/schemas/SamlApplication'
-                    - $ref: '#/components/schemas/SecurePasswordStoreApplication'
-                    - $ref: '#/components/schemas/WsFederationApplication'
-                  discriminator: &ref_1
-                    propertyName: signOnMode
-                    mapping:
-                      AUTO_LOGIN: '#/components/schemas/AutoLoginApplication'
-                      BASIC_AUTH: '#/components/schemas/BasicAuthApplication'
-                      BOOKMARK: '#/components/schemas/BookmarkApplication'
-                      BROWSER_PLUGIN: '#/components/schemas/BrowserPluginApplication'
-                      OPENID_CONNECT: '#/components/schemas/OpenIdConnectApplication'
-                      SAML_1_1: '#/components/schemas/Saml11Application'
-                      SAML_2_0: '#/components/schemas/SamlApplication'
-                      SECURE_PASSWORD_STORE: '#/components/schemas/SecurePasswordStoreApplication'
-                      WS_FEDERATION: '#/components/schemas/WsFederationApplication'
+                  $ref: '#/components/schemas/Application'
               examples:
                 ResponseExample1:
                   $ref: '#/components/examples/GetApplicationsByUserResponseEx'
@@ -1609,8 +1588,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_0
-              discriminator: *ref_1
+              $ref: '#/components/schemas/Application'
             examples:
               BOOKMARK:
                 $ref: '#/components/examples/BookmarkEx'
@@ -1637,8 +1615,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_0
-                discriminator: *ref_1
+                $ref: '#/components/schemas/Application'
               examples:
                 BOOKMARK:
                   $ref: '#/components/examples/BookmarkAppResponseEx'
@@ -1701,8 +1678,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_0
-                discriminator: *ref_1
+                $ref: '#/components/schemas/Application'
               examples:
                 RetrieveEx1:
                   $ref: '#/components/examples/GetApplicationsResponseEx'
@@ -1734,8 +1710,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_0
-              discriminator: *ref_1
+              $ref: '#/components/schemas/Application'
             examples:
               BOOKMARK:
                 $ref: '#/components/examples/BookmarkPutEx'
@@ -1762,8 +1737,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_0
-                discriminator: *ref_1
+                $ref: '#/components/schemas/Application'
               examples:
                 BOOKMARK:
                   $ref: '#/components/examples/BookmarkPutResponseEx'
@@ -2897,14 +2871,7 @@ paths:
             application/json:
               schema:
                 items:
-                  oneOf: &ref_2
-                    - $ref: '#/components/schemas/UserProvisioningApplicationFeature'
-                    - $ref: '#/components/schemas/InboundProvisioningApplicationFeature'
-                  discriminator: &ref_3
-                    propertyName: name
-                    mapping:
-                      USER_PROVISIONING: '#/components/schemas/UserProvisioningApplicationFeature'
-                      INBOUND_PROVISIONING: '#/components/schemas/InboundProvisioningApplicationFeature'
+                  $ref: '#/components/schemas/ApplicationFeature'
                 type: array
               examples:
                 ListAppFeatureResponse:
@@ -2947,8 +2914,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_2
-                discriminator: *ref_3
+                $ref: '#/components/schemas/ApplicationFeature'
               examples:
                 AppFeatureResponse:
                   $ref: '#/components/examples/AppFeatureResponseEx'
@@ -2992,8 +2958,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_2
-                discriminator: *ref_3
+                $ref: '#/components/schemas/ApplicationFeature'
               examples:
                 UpdateAppFeatureEx:
                   $ref: '#/components/examples/UpdateAppFeatureResponseEx'
@@ -3940,40 +3905,7 @@ paths:
             application/json:
               schema:
                 items:
-                  oneOf:
-                    - $ref: '#/components/schemas/AuthenticatorKeyCustomApp'
-                    - $ref: '#/components/schemas/AuthenticatorKeyDuo'
-                    - $ref: '#/components/schemas/AuthenticatorKeyEmail'
-                    - $ref: '#/components/schemas/AuthenticatorKeyGoogleOtp'
-                    - $ref: '#/components/schemas/AuthenticatorKeyExternalIdp'
-                    - $ref: '#/components/schemas/AuthenticatorKeyPassword'
-                    - $ref: '#/components/schemas/AuthenticatorKeyOktaVerify'
-                    - $ref: '#/components/schemas/AuthenticatorKeyOnprem'
-                    - $ref: '#/components/schemas/AuthenticatorKeyPhone'
-                    - $ref: '#/components/schemas/AuthenticatorKeySecurityKey'
-                    - $ref: '#/components/schemas/AuthenticatorKeySecurityQuestion'
-                    - $ref: '#/components/schemas/AuthenticatorKeySymantecVip'
-                    - $ref: '#/components/schemas/AuthenticatorKeySmartCard'
-                    - $ref: '#/components/schemas/AuthenticatorKeyWebauthn'
-                    - $ref: '#/components/schemas/AuthenticatorKeyYubikey'
-                  discriminator: &ref_24
-                    propertyName: key
-                    mapping:
-                      custom_app: '#/components/schemas/AuthenticatorKeyCustomApp'
-                      duo: '#/components/schemas/AuthenticatorKeyDuo'
-                      okta_email: '#/components/schemas/AuthenticatorKeyEmail'
-                      google_otp: '#/components/schemas/AuthenticatorKeyGoogleOtp'
-                      external_idp: '#/components/schemas/AuthenticatorKeyExternalIdp'
-                      okta_password: '#/components/schemas/AuthenticatorKeyPassword'
-                      okta_verify: '#/components/schemas/AuthenticatorKeyOktaVerify'
-                      onprem_mfa: '#/components/schemas/AuthenticatorKeyOnprem'
-                      phone_number: '#/components/schemas/AuthenticatorKeyPhone'
-                      security_key: '#/components/schemas/AuthenticatorKeySecurityKey'
-                      security_question: '#/components/schemas/AuthenticatorKeySecurityQuestion'
-                      symantec_vip: '#/components/schemas/AuthenticatorKeySymantecVip'
-                      smart_card_idp: '#/components/schemas/AuthenticatorKeySmartCard'
-                      webauthn: '#/components/schemas/AuthenticatorKeyWebauthn'
-                      yubikey_token: '#/components/schemas/AuthenticatorKeyYubikey'
+                  $ref: '#/components/schemas/AuthenticatorBase'
                 type: array
               examples:
                 OrgAuthenticatorsEx:
@@ -4159,30 +4091,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_4
-                    - $ref: '#/components/schemas/AuthenticatorMethodSimple'
-                    - $ref: '#/components/schemas/AuthenticatorMethodPush'
-                    - $ref: '#/components/schemas/AuthenticatorMethodSignedNonce'
-                    - $ref: '#/components/schemas/AuthenticatorMethodTotp'
-                    - $ref: '#/components/schemas/AuthenticatorMethodOtp'
-                    - $ref: '#/components/schemas/AuthenticatorMethodWebAuthn'
-                    - $ref: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
-                  discriminator: &ref_5
-                    propertyName: type
-                    mapping:
-                      sms: '#/components/schemas/AuthenticatorMethodSimple'
-                      voice: '#/components/schemas/AuthenticatorMethodSimple'
-                      email: '#/components/schemas/AuthenticatorMethodSimple'
-                      push: '#/components/schemas/AuthenticatorMethodPush'
-                      signed_nonce: '#/components/schemas/AuthenticatorMethodSignedNonce'
-                      totp: '#/components/schemas/AuthenticatorMethodTotp'
-                      otp: '#/components/schemas/AuthenticatorMethodOtp'
-                      password: '#/components/schemas/AuthenticatorMethodSimple'
-                      webauthn: '#/components/schemas/AuthenticatorMethodWebAuthn'
-                      security_question: '#/components/schemas/AuthenticatorMethodSimple'
-                      idp: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
-                      duo: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
-                      cert: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
+                  $ref: '#/components/schemas/AuthenticatorMethodBase'
               examples:
                 Phone:
                   $ref: '#/components/examples/AuthenticatorMethodPhone'
@@ -4226,8 +4135,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_4
-                discriminator: *ref_5
+                $ref: '#/components/schemas/AuthenticatorMethodBase'
               examples:
                 sms:
                   $ref: '#/components/examples/AuthenticatorMethodSms'
@@ -4267,16 +4175,14 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_4
-              discriminator: *ref_5
+              $ref: '#/components/schemas/AuthenticatorMethodBase'
       responses:
         '200':
           description: Success
           content:
             application/json:
               schema:
-                oneOf: *ref_4
-                discriminator: *ref_5
+                $ref: '#/components/schemas/AuthenticatorMethodBase'
               examples:
                 sms:
                   $ref: '#/components/examples/AuthenticatorMethodSms'
@@ -4324,8 +4230,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_4
-                discriminator: *ref_5
+                $ref: '#/components/schemas/AuthenticatorMethodBase'
               examples:
                 sms:
                   $ref: '#/components/examples/AuthenticatorMethodSms'
@@ -4369,8 +4274,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_4
-                discriminator: *ref_5
+                $ref: '#/components/schemas/AuthenticatorMethodBase'
               examples:
                 voice:
                   $ref: '#/components/examples/AuthenticatorMethodInactiveVoice'
@@ -5980,18 +5884,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_6
-                    - $ref: '#/components/schemas/BehaviorRuleAnomalousLocation'
-                    - $ref: '#/components/schemas/BehaviorRuleAnomalousIP'
-                    - $ref: '#/components/schemas/BehaviorRuleAnomalousDevice'
-                    - $ref: '#/components/schemas/BehaviorRuleVelocity'
-                  discriminator: &ref_7
-                    propertyName: type
-                    mapping:
-                      ANOMALOUS_LOCATION: '#/components/schemas/BehaviorRuleAnomalousLocation'
-                      ANOMALOUS_IP: '#/components/schemas/BehaviorRuleAnomalousIP'
-                      ANOMALOUS_DEVICE: '#/components/schemas/BehaviorRuleAnomalousDevice'
-                      VELOCITY: '#/components/schemas/BehaviorRuleVelocity'
+                  $ref: '#/components/schemas/BehaviorRule'
         '403':
           $ref: '#/components/responses/ErrorAccessDenied403'
         '429':
@@ -6014,8 +5907,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_6
-              discriminator: *ref_7
+              $ref: '#/components/schemas/BehaviorRule'
             examples:
               BehaviorRuleRequest:
                 $ref: '#/components/examples/BehaviorRuleRequest'
@@ -6065,8 +5957,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_6
-                discriminator: *ref_7
+                $ref: '#/components/schemas/BehaviorRule'
         '403':
           $ref: '#/components/responses/ErrorAccessDenied403'
         '404':
@@ -6098,8 +5989,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_6
-              discriminator: *ref_7
+              $ref: '#/components/schemas/BehaviorRule'
             examples:
               BehaviorRuleRequest:
                 $ref: '#/components/examples/BehaviorRuleRequest'
@@ -6110,8 +6000,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_6
-                discriminator: *ref_7
+                $ref: '#/components/schemas/BehaviorRule'
               examples:
                 BehaviorRuleReSponse:
                   $ref: '#/components/examples/BehaviorRuleResponse'
@@ -6188,8 +6077,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_6
-                discriminator: *ref_7
+                $ref: '#/components/schemas/BehaviorRule'
               examples:
                 BehaviorRuleReSponse:
                   $ref: '#/components/examples/BehaviorRuleResponse'
@@ -6221,8 +6109,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_6
-                discriminator: *ref_7
+                $ref: '#/components/schemas/BehaviorRule'
               examples:
                 BehaviorRuleReSponse:
                   $ref: '#/components/examples/BehaviorRuleResponse'
@@ -8196,20 +8083,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_8
-                    - $ref: '#/components/schemas/DeviceAssuranceWindowsPlatform'
-                    - $ref: '#/components/schemas/DeviceAssuranceMacOSPlatform'
-                    - $ref: '#/components/schemas/DeviceAssuranceChromeOSPlatform'
-                    - $ref: '#/components/schemas/DeviceAssuranceIOSPlatform'
-                    - $ref: '#/components/schemas/DeviceAssuranceAndroidPlatform'
-                  discriminator: &ref_9
-                    propertyName: platform
-                    mapping:
-                      WINDOWS: '#/components/schemas/DeviceAssuranceWindowsPlatform'
-                      MACOS: '#/components/schemas/DeviceAssuranceMacOSPlatform'
-                      CHROMEOS: '#/components/schemas/DeviceAssuranceChromeOSPlatform'
-                      IOS: '#/components/schemas/DeviceAssuranceIOSPlatform'
-                      ANDROID: '#/components/schemas/DeviceAssuranceAndroidPlatform'
+                  $ref: '#/components/schemas/DeviceAssurance'
         '403':
           $ref: '#/components/responses/ErrorAccessDenied403'
         '429':
@@ -8234,8 +8108,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_8
-              discriminator: *ref_9
+              $ref: '#/components/schemas/DeviceAssurance'
             examples:
               Android:
                 $ref: '#/components/examples/DeviceAssuranceAndroidRequest'
@@ -8270,8 +8143,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_8
-                discriminator: *ref_9
+                $ref: '#/components/schemas/DeviceAssurance'
               examples:
                 Android:
                   $ref: '#/components/examples/DeviceAssuranceAndroidResponse'
@@ -8329,8 +8201,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_8
-                discriminator: *ref_9
+                $ref: '#/components/schemas/DeviceAssurance'
               examples:
                 Android:
                   $ref: '#/components/examples/DeviceAssuranceAndroidResponse'
@@ -8384,8 +8255,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_8
-              discriminator: *ref_9
+              $ref: '#/components/schemas/DeviceAssurance'
             examples:
               Android:
                 $ref: '#/components/examples/DeviceAssuranceAndroidRequest'
@@ -8420,8 +8290,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_8
-                discriminator: *ref_9
+                $ref: '#/components/schemas/DeviceAssurance'
               examples:
                 Android:
                   $ref: '#/components/examples/DeviceAssuranceAndroidResponse'
@@ -10624,8 +10493,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: *ref_0
-                  discriminator: *ref_1
+                  $ref: '#/components/schemas/Application'
               examples:
                 ListAppsExample:
                   $ref: '#/components/examples/list-apps-example'
@@ -11406,6 +11274,7 @@ paths:
       operationId: getHookKey
       parameters:
         - name: id
+          required: true
           description: A valid key ID
           in: path
           schema:
@@ -14046,14 +13915,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_10
-                    - $ref: '#/components/schemas/LogStreamAws'
-                    - $ref: '#/components/schemas/LogStreamSplunk'
-                  discriminator: &ref_11
-                    propertyName: type
-                    mapping:
-                      aws_eventbridge: '#/components/schemas/LogStreamAws'
-                      splunk_cloud_logstreaming: '#/components/schemas/LogStreamSplunk'
+                  $ref: '#/components/schemas/LogStream'
               examples:
                 ExampleGetAllResponse:
                   $ref: '#/components/examples/LogStreamGetAllResponse'
@@ -14080,8 +13942,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_10
-              discriminator: *ref_11
+              $ref: '#/components/schemas/LogStream'
             examples:
               LogStreamPostRequestExample:
                 $ref: '#/components/examples/LogStreamPostRequest'
@@ -14092,8 +13953,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_10
-                discriminator: *ref_11
+                $ref: '#/components/schemas/LogStream'
               examples:
                 LogStreamPostResponseExample:
                   $ref: '#/components/examples/LogStreamPostResponse'
@@ -14133,8 +13993,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_10
-                discriminator: *ref_11
+                $ref: '#/components/schemas/LogStream'
               examples:
                 LogStreamGetRequestExample:
                   $ref: '#/components/examples/LogStreamPostResponse'
@@ -14172,14 +14031,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/LogStreamAwsPutSchema'
-                - $ref: '#/components/schemas/LogStreamSplunkPutSchema'
-              discriminator: &ref_25
-                propertyName: type
-                mapping:
-                  aws_eventbridge: '#/components/schemas/LogStreamAwsPutSchema'
-                  splunk_cloud_logstreaming: '#/components/schemas/LogStreamSplunkPutSchema'
+              $ref: '#/components/schemas/LogStreamPutSchema'
             examples:
               LogStreamPutRequestExample:
                 $ref: '#/components/examples/LogStreamPutRequest'
@@ -14190,8 +14042,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_10
-                discriminator: *ref_11
+                $ref: '#/components/schemas/LogStream'
               examples:
                 LogStreamPostResponseExample:
                   $ref: '#/components/examples/LogStreamPutResponse'
@@ -14257,8 +14108,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_10
-                discriminator: *ref_11
+                $ref: '#/components/schemas/LogStream'
               examples:
                 LogStreamActivateResponseExample:
                   $ref: '#/components/examples/LogStreamActivateResponse'
@@ -14291,8 +14141,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_10
-                discriminator: *ref_11
+                $ref: '#/components/schemas/LogStream'
               examples:
                 LogStreamDeactivateResponseExample:
                   $ref: '#/components/examples/LogStreamDeactivateResponse'
@@ -15596,14 +15445,7 @@ paths:
             application/json:
               schema:
                 items:
-                  oneOf:
-                    - $ref: '#/components/schemas/orgBillingContactType'
-                    - $ref: '#/components/schemas/orgTechnicalContactType'
-                  discriminator: &ref_26
-                    propertyName: contactType
-                    mapping:
-                      BILLING: '#/components/schemas/orgBillingContactType'
-                      TECHNICAL: '#/components/schemas/orgTechnicalContactType'
+                  $ref: '#/components/schemas/OrgContactTypeObj'
                 type: array
               examples:
                 orgContactTypeEx:
@@ -16633,26 +16475,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: &ref_12
-                  - $ref: '#/components/schemas/AccessPolicy'
-                  - $ref: '#/components/schemas/IdpDiscoveryPolicy'
-                  - $ref: '#/components/schemas/AuthenticatorEnrollmentPolicy'
-                  - $ref: '#/components/schemas/OktaSignOnPolicy'
-                  - $ref: '#/components/schemas/PasswordPolicy'
-                  - $ref: '#/components/schemas/ProfileEnrollmentPolicy'
-                  - $ref: '#/components/schemas/PostAuthSessionPolicy'
-                  - $ref: '#/components/schemas/EntityRiskPolicy'
-                discriminator: &ref_13
-                  propertyName: type
-                  mapping:
-                    ACCESS_POLICY: '#/components/schemas/AccessPolicy'
-                    IDP_DISCOVERY: '#/components/schemas/IdpDiscoveryPolicy'
-                    MFA_ENROLL: '#/components/schemas/AuthenticatorEnrollmentPolicy'
-                    OKTA_SIGN_ON: '#/components/schemas/OktaSignOnPolicy'
-                    PASSWORD: '#/components/schemas/PasswordPolicy'
-                    PROFILE_ENROLLMENT: '#/components/schemas/ProfileEnrollmentPolicy'
-                    POST_AUTH_SESSION: '#/components/schemas/PostAuthSessionPolicy'
-                    ENTITY_RISK: '#/components/schemas/EntityRiskPolicy'
+                $ref: '#/components/schemas/Policy'
               examples:
                 password:
                   $ref: '#/components/examples/password-policy-response'
@@ -16691,8 +16514,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_12
-              discriminator: *ref_13
+              $ref: '#/components/schemas/Policy'
         required: true
       responses:
         '200':
@@ -16700,8 +16522,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_12
-                discriminator: *ref_13
+                $ref: '#/components/schemas/Policy'
               examples:
                 password:
                   $ref: '#/components/examples/password-policy-response'
@@ -16793,8 +16614,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_12
-                discriminator: *ref_13
+                $ref: '#/components/schemas/Policy'
               examples:
                 password:
                   $ref: '#/components/examples/password-policy-response'
@@ -16828,8 +16648,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_12
-              discriminator: *ref_13
+              $ref: '#/components/schemas/Policy'
         required: true
       responses:
         '200':
@@ -16837,8 +16656,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_12
-                discriminator: *ref_13
+                $ref: '#/components/schemas/Policy'
               examples:
                 password:
                   $ref: '#/components/examples/password-policy-response'
@@ -16906,8 +16724,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: *ref_0
-                  discriminator: *ref_1
+                  $ref: '#/components/schemas/Application'
         '403':
           $ref: '#/components/responses/ErrorAccessDenied403'
         '404':
@@ -16936,8 +16753,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_12
-                discriminator: *ref_13
+                $ref: '#/components/schemas/Policy'
               examples:
                 password:
                   $ref: '#/components/examples/password-policy-response'
@@ -17161,28 +16977,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_14
-                    - $ref: '#/components/schemas/AccessPolicyRule'
-                    - $ref: '#/components/schemas/PasswordPolicyRule'
-                    - $ref: '#/components/schemas/ProfileEnrollmentPolicyRule'
-                    - $ref: '#/components/schemas/AuthorizationServerPolicyRule'
-                    - $ref: '#/components/schemas/OktaSignOnPolicyRule'
-                    - $ref: '#/components/schemas/IdpDiscoveryPolicyRule'
-                    - $ref: '#/components/schemas/PostAuthSessionPolicyRule'
-                    - $ref: '#/components/schemas/EntityRiskPolicyRule'
-                    - $ref: '#/components/schemas/AuthenticatorEnrollmentPolicyRule'
-                  discriminator: &ref_15
-                    propertyName: type
-                    mapping:
-                      ACCESS_POLICY: '#/components/schemas/AccessPolicyRule'
-                      PASSWORD: '#/components/schemas/PasswordPolicyRule'
-                      PROFILE_ENROLLMENT: '#/components/schemas/ProfileEnrollmentPolicyRule'
-                      RESOURCE_ACCESS: '#/components/schemas/AuthorizationServerPolicyRule'
-                      SIGN_ON: '#/components/schemas/OktaSignOnPolicyRule'
-                      IDP_DISCOVERY: '#/components/schemas/IdpDiscoveryPolicyRule'
-                      POST_AUTH_SESSION: '#/components/schemas/PostAuthSessionPolicyRule'
-                      ENTITY_RISK: '#/components/schemas/EntityRiskPolicyRule'
-                      MFA_ENROLL: '#/components/schemas/AuthenticatorEnrollmentPolicyRule'
+                  $ref: '#/components/schemas/PolicyRule'
               examples:
                 SignOnPolicy:
                   $ref: '#/components/examples/list-all-policy-rule-response-array'
@@ -17220,8 +17015,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_14
-              discriminator: *ref_15
+              $ref: '#/components/schemas/PolicyRule'
             examples:
               EnableSsprSecurityQuestionStepUp:
                 $ref: '#/components/examples/sspr-enabled-sq-step-up'
@@ -17258,8 +17052,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_14
-                discriminator: *ref_15
+                $ref: '#/components/schemas/PolicyRule'
               examples:
                 EnableSsprSecurityQuestionStepUp:
                   $ref: '#/components/examples/sspr-enabled-sq-step-up-response'
@@ -17320,8 +17113,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_14
-                discriminator: *ref_15
+                $ref: '#/components/schemas/PolicyRule'
               examples:
                 EnableSsprSecurityQuestionStepUp:
                   $ref: '#/components/examples/sspr-enabled-sq-step-up-update'
@@ -17371,8 +17163,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_14
-              discriminator: *ref_15
+              $ref: '#/components/schemas/PolicyRule'
             examples:
               EnableSsprSecurityQuestionStepUp:
                 $ref: '#/components/examples/sspr-enabled-sq-step-up-update'
@@ -17405,8 +17196,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_14
-                discriminator: *ref_15
+                $ref: '#/components/schemas/PolicyRule'
               examples:
                 EnableSsprSecurityQuestionStepUp:
                   $ref: '#/components/examples/sspr-enabled-sq-step-up-response'
@@ -17739,14 +17529,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_16
-                    - $ref: '#/components/schemas/APNSPushProvider'
-                    - $ref: '#/components/schemas/FCMPushProvider'
-                  discriminator: &ref_17
-                    propertyName: providerType
-                    mapping:
-                      APNS: '#/components/schemas/APNSPushProvider'
-                      FCM: '#/components/schemas/FCMPushProvider'
+                  $ref: '#/components/schemas/PushProvider'
         '403':
           $ref: '#/components/responses/ErrorAccessDenied403'
         '429':
@@ -17771,8 +17554,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_16
-              discriminator: *ref_17
+              $ref: '#/components/schemas/PushProvider'
             examples:
               APNs:
                 $ref: '#/components/examples/PushProviderAPNsRequest'
@@ -17785,8 +17567,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_16
-                discriminator: *ref_17
+                $ref: '#/components/schemas/PushProvider'
               examples:
                 APNs:
                   $ref: '#/components/examples/PushProviderAPNsResponse'
@@ -17822,8 +17603,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_16
-                discriminator: *ref_17
+                $ref: '#/components/schemas/PushProvider'
               examples:
                 APNs:
                   $ref: '#/components/examples/PushProviderAPNsResponse'
@@ -17855,8 +17635,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_16
-              discriminator: *ref_17
+              $ref: '#/components/schemas/PushProvider'
             examples:
               APNs:
                 $ref: '#/components/examples/PushProviderAPNsRequest'
@@ -17869,8 +17648,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_16
-                discriminator: *ref_17
+                $ref: '#/components/schemas/PushProvider'
               examples:
                 APNs:
                   $ref: '#/components/examples/PushProviderAPNsResponse'
@@ -19377,7 +19155,7 @@ paths:
       description: |-
         Retrieves Session information for the current user. Use this method in a browser-based application to determine if the user is signed in. 
 
-        > **Note:** This operation requires a session cookie for the user. An API token isn't allowed for this operation. 
+        > **Note:** This operation requires a session cookie for the user. An API token isn't allowed for this operation.
       operationId: getCurrentSession
       parameters:
         - in: header
@@ -21564,35 +21342,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_18
-                    - $ref: '#/components/schemas/UserFactorCall'
-                    - $ref: '#/components/schemas/UserFactorEmail'
-                    - $ref: '#/components/schemas/UserFactorPush'
-                    - $ref: '#/components/schemas/UserFactorSecurityQuestion'
-                    - $ref: '#/components/schemas/UserFactorSMS'
-                    - $ref: '#/components/schemas/UserFactorToken'
-                    - $ref: '#/components/schemas/UserFactorTokenHardware'
-                    - $ref: '#/components/schemas/UserFactorTokenHOTP'
-                    - $ref: '#/components/schemas/UserFactorTokenSoftwareTOTP'
-                    - $ref: '#/components/schemas/UserFactorU2F'
-                    - $ref: '#/components/schemas/UserFactorWeb'
-                    - $ref: '#/components/schemas/UserFactorWebAuthn'
-                  discriminator: &ref_19
-                    propertyName: factorType
-                    mapping:
-                      call: '#/components/schemas/UserFactorCall'
-                      email: '#/components/schemas/UserFactorEmail'
-                      push: '#/components/schemas/UserFactorPush'
-                      question: '#/components/schemas/UserFactorSecurityQuestion'
-                      sms: '#/components/schemas/UserFactorSMS'
-                      token: '#/components/schemas/UserFactorToken'
-                      token:hardware: '#/components/schemas/UserFactorTokenHardware'
-                      token:hotp: '#/components/schemas/UserFactorTokenHOTP'
-                      token:software:totp: '#/components/schemas/UserFactorTokenSoftwareTOTP'
-                      u2f: '#/components/schemas/UserFactorU2F'
-                      web: '#/components/schemas/UserFactorWeb'
-                      webauthn: '#/components/schemas/UserFactorWebAuthn'
-                      hotp: '#/components/schemas/UserFactorTokenHOTP'
+                  $ref: '#/components/schemas/UserFactor'
               examples:
                 ListFactorsResponse:
                   $ref: '#/components/examples/ListFactorsResults'
@@ -21680,8 +21430,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_18
-              discriminator: *ref_19
+              $ref: '#/components/schemas/UserFactor'
             examples:
               question:
                 $ref: '#/components/examples/EnrollFactorQuestionRequest'
@@ -21716,8 +21465,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_18
-                discriminator: *ref_19
+                $ref: '#/components/schemas/UserFactor'
               examples:
                 question:
                   $ref: '#/components/examples/EnrollFactorQuestionResponse'
@@ -21932,24 +21680,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/UserFactorCall'
-                  - $ref: '#/components/schemas/UserFactorEmail'
-                  - $ref: '#/components/schemas/UserFactorSMS'
-                  - $ref: '#/components/schemas/UserFactorPush'
-                  - $ref: '#/components/schemas/UserFactorTokenSoftwareTOTP'
-                  - $ref: '#/components/schemas/UserFactorU2F'
-                  - $ref: '#/components/schemas/UserFactorWebAuthn'
-                discriminator: &ref_27
-                  propertyName: factorType
-                  mapping:
-                    call: '#/components/schemas/UserFactorCall'
-                    email: '#/components/schemas/UserFactorEmail'
-                    sms: '#/components/schemas/UserFactorSMS'
-                    push: '#/components/schemas/UserFactorPush'
-                    token:software:totp: '#/components/schemas/UserFactorTokenSoftwareTOTP'
-                    u2f: '#/components/schemas/UserFactorU2F'
-                    webauthn: '#/components/schemas/UserFactorWebAuthn'
+                $ref: '#/components/schemas/UserFactorActivateResponse'
               examples:
                 token:software:totp:
                   $ref: '#/components/examples/ActivateFactorTotpResponse'
@@ -22006,16 +21737,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: &ref_20
-                - $ref: '#/components/schemas/UserFactorCall'
-                - $ref: '#/components/schemas/UserFactorEmail'
-                - $ref: '#/components/schemas/UserFactorSMS'
-              discriminator: &ref_21
-                propertyName: factorType
-                mapping:
-                  call: '#/components/schemas/UserFactorCall'
-                  email: '#/components/schemas/UserFactorEmail'
-                  sms: '#/components/schemas/UserFactorSMS'
+              $ref: '#/components/schemas/ResendUserFactor'
             examples:
               sms:
                 value:
@@ -22030,8 +21752,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_20
-                discriminator: *ref_21
+                $ref: '#/components/schemas/ResendUserFactor'
               examples:
                 sms:
                   $ref: '#/components/examples/EnrollFactorSmsResponse'
@@ -22067,18 +21788,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/UserFactorPushTransactionWaiting'
-                  - $ref: '#/components/schemas/UserFactorPushTransaction'
-                  - $ref: '#/components/schemas/UserFactorPushTransactionRejected'
-                  - $ref: '#/components/schemas/UserFactorPushTransactionTimeout'
-                discriminator: &ref_28
-                  propertyName: factorResult
-                  mapping:
-                    WAITING: '#/components/schemas/UserFactorPushTransactionWaiting'
-                    SUCCESS: '#/components/schemas/UserFactorPushTransaction'
-                    REJECTED: '#/components/schemas/UserFactorPushTransactionRejected'
-                    TIMEOUT: '#/components/schemas/UserFactorPushTransactionTimeout'
+                $ref: '#/components/schemas/UserFactorPushTransaction'
               examples:
                 WAITING:
                   $ref: '#/components/examples/UserFactorVerifyPushTransactionWaiting'
@@ -23130,7 +22840,7 @@ paths:
       description: |
         Assigns an app instance target to an `APP_ADMIN` Role Assignment to an admin User. When you assign the first OIN app or app instance target, you reduce the scope of the Role Assignment.
         The Role no longer applies to all app targets, but applies only to the specified target.
-                     
+        
         > **Note:** You can target a mixture of both OIN app and app instance targets, but can't assign permissions to manage all instances of an OIN app and then assign a subset of permission to the same OIN app.
         > For example, you can't specify that an admin has access to manage all instances of the Salesforce app and then also manage specific configurations of the Salesforce app.
       operationId: assignAppInstanceTargetToAppAdminRoleForUser
@@ -23501,16 +23211,7 @@ paths:
               schema:
                 type: array
                 items:
-                  oneOf: &ref_22
-                    - $ref: '#/components/schemas/IPNetworkZone'
-                    - $ref: '#/components/schemas/DynamicNetworkZone'
-                    - $ref: '#/components/schemas/EnhancedDynamicNetworkZone'
-                  discriminator: &ref_23
-                    propertyName: type
-                    mapping:
-                      IP: '#/components/schemas/IPNetworkZone'
-                      DYNAMIC: '#/components/schemas/DynamicNetworkZone'
-                      DYNAMIC_V2: '#/components/schemas/EnhancedDynamicNetworkZone'
+                  $ref: '#/components/schemas/NetworkZone'
               examples:
                 RetrieveAllZonesWithFilter:
                   $ref: '#/components/examples/RetrieveAllZonesWithFilter'
@@ -23542,8 +23243,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_22
-              discriminator: *ref_23
+              $ref: '#/components/schemas/NetworkZone'
             examples:
               CreateIPPolicyNetworkZone:
                 $ref: '#/components/examples/CreateIPPolicyNetworkZone'
@@ -23558,8 +23258,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_22
-                discriminator: *ref_23
+                $ref: '#/components/schemas/NetworkZone'
               examples:
                 CreateIPPolicyNetworkZone:
                   $ref: '#/components/examples/CreateIPPolicyNetworkZoneResponse'
@@ -23595,8 +23294,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_22
-                discriminator: *ref_23
+                $ref: '#/components/schemas/NetworkZone'
               examples:
                 RetrieveNetworkZoneIP:
                   $ref: '#/components/examples/RetrieveNetworkZoneIP'
@@ -23630,8 +23328,7 @@ paths:
         content:
           application/json:
             schema:
-              oneOf: *ref_22
-              discriminator: *ref_23
+              $ref: '#/components/schemas/NetworkZone'
             examples:
               ReplaceNetworkZone:
                 $ref: '#/components/examples/ReplaceNetworkZone'
@@ -23642,8 +23339,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_22
-                discriminator: *ref_23
+                $ref: '#/components/schemas/NetworkZone'
               examples:
                 ReplaceNetworkZone:
                   $ref: '#/components/examples/ReplaceNetworkZoneResponse'
@@ -23704,8 +23400,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_22
-                discriminator: *ref_23
+                $ref: '#/components/schemas/NetworkZone'
               examples:
                 ActivateNetworkZone:
                   $ref: '#/components/examples/ActivateNetworkZone'
@@ -23737,8 +23432,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf: *ref_22
-                discriminator: *ref_23
+                $ref: '#/components/schemas/NetworkZone'
               examples:
                 DeactivateNetworkZone:
                   $ref: '#/components/examples/DeactivateNetworkZone'
@@ -25330,20 +25024,20 @@ x-webhooks:
         This section covers what happens when a token inline hook flow fails either due to the external inline hook service returning an error object or not returning a successful response, or the inline hook patch fails.
         > **Note:** Administrators can use the [Okta System Log](https://developer.okta.com/docs/reference/api/system-log/) to view errors. See the [Troubleshooting](https://developer.okta.com/docs/concepts/inline-hooks/#troubleshooting) section in the inline hooks concept piece for more information on the events related to inline hooks that the Okta System Log captures.
         - When there's a communication failure with the external service, a timeout for example, the inline hook operation is skipped. The token is generated without any modification from the inline hook.
-          
+        
           **Who can see this error?** Administrators
 
         - When the external service returns a response with any other HTTP status code besides `200`, the inline hook operation is skipped. The token is generated without any modification from the inline hook.
-          
+        
           **Who can see this error?** Administrators
 
         - When the external service returns an error object in the response, the entire token inline hook flow fails with no token generated.
-          
+        
           **Who can see this error?** Administrators, developers, and end users. When the OAuth 2.0 client receives the error, the client developer can see that error if the client has the debug information. What the end user sees depends on how errors are handled within the client.
           > **Note:** See the [error](https://developer.okta.com/docs/reference/token-hook/#error) section on this page for more information on what to include in the error object of your response and what the OAuth 2.0 error includes that Okta returns to the requestor of the token.
 
         - When a hook command (for example, updating, adding, and deleting claims) can't be performed, the inline hook operation is skipped. The token is generated without any modification from the inline hook.
-          
+        
           **Who can see this error?** Administrators
 
           The following actions result in an error:
@@ -26835,8 +26529,8 @@ components:
         properties:
           profile:
             allOf:
-              - $ref: '#/definitions/base'
-              - $ref: '#/definitions/custom'
+              - $ref: '#base'
+              - $ref: '#custom'
     AppUserUpdateCredRequest:
       summary: Application User credentials update
       value:
@@ -33474,8 +33168,8 @@ components:
         properties:
           profile:
             allOf:
-              - $ref: '#/definitions/custom'
-              - $ref: '#/definitions/base'
+              - $ref: '#base'
+              - $ref: '#custom'
         title: Okta group
         type: object
     IAMStandardRoleResponseClient:
@@ -41813,8 +41507,8 @@ components:
         properties:
           profile:
             allOf:
-              - $ref: '#/definitions/base'
-              - $ref: '#/definitions/custom'
+              - $ref: '#base'
+              - $ref: '#custom'
     VerifiedEmailDomainResponse:
       value:
         id: OeD114iNkrcN6aR680g4
@@ -45908,7 +45602,7 @@ components:
       in: query
       description: |-
         An optional query parameter to return the corresponding assigned [Group](/openapi/okta-management/management/tag/Group/) or 
-        the group assignment metadata details in the `_embedded` property. 
+        the group assignment metadata details in the `_embedded` property.
       schema:
         type: string
         example: group
@@ -45924,7 +45618,7 @@ components:
       in: query
       description: |-
         An optional query parameter to return the corresponding assigned [Group](/openapi/okta-management/management/tag/Group/) or 
-        the group assignment metadata details in the `_embedded` property. 
+        the group assignment metadata details in the `_embedded` property.
       schema:
         type: string
         example: metadata
@@ -47276,7 +46970,18 @@ components:
       required:
         - signOnMode
         - label
-      discriminator: *ref_1
+      discriminator:
+        propertyName: signOnMode
+        mapping:
+          AUTO_LOGIN: '#/components/schemas/AutoLoginApplication'
+          BASIC_AUTH: '#/components/schemas/BasicAuthApplication'
+          BOOKMARK: '#/components/schemas/BookmarkApplication'
+          BROWSER_PLUGIN: '#/components/schemas/BrowserPluginApplication'
+          OPENID_CONNECT: '#/components/schemas/OpenIdConnectApplication'
+          SAML_1_1: '#/components/schemas/Saml11Application'
+          SAML_2_0: '#/components/schemas/SamlApplication'
+          SECURE_PASSWORD_STORE: '#/components/schemas/SecurePasswordStoreApplication'
+          WS_FEDERATION: '#/components/schemas/WsFederationApplication'
     ApplicationAccessibility:
       description: Specifies access settings for the app
       type: object
@@ -47446,7 +47151,11 @@ components:
           allOf:
             - $ref: '#/components/schemas/LinksSelf'
             - readOnly: true
-      discriminator: *ref_3
+      discriminator:
+        propertyName: name
+        mapping:
+          USER_PROVISIONING: '#/components/schemas/UserProvisioningApplicationFeature'
+          INBOUND_PROVISIONING: '#/components/schemas/InboundProvisioningApplicationFeature'
     ApplicationFeatureType:
       description: |
         Key name of the feature
@@ -47972,7 +47681,24 @@ components:
         _links:
           description: Link relations for this object
           $ref: '#/components/schemas/AuthenticatorLinks'
-      discriminator: *ref_24
+      discriminator:
+        propertyName: key
+        mapping:
+          custom_app: '#/components/schemas/AuthenticatorKeyCustomApp'
+          duo: '#/components/schemas/AuthenticatorKeyDuo'
+          okta_email: '#/components/schemas/AuthenticatorKeyEmail'
+          google_otp: '#/components/schemas/AuthenticatorKeyGoogleOtp'
+          external_idp: '#/components/schemas/AuthenticatorKeyExternalIdp'
+          okta_password: '#/components/schemas/AuthenticatorKeyPassword'
+          okta_verify: '#/components/schemas/AuthenticatorKeyOktaVerify'
+          onprem_mfa: '#/components/schemas/AuthenticatorKeyOnprem'
+          phone_number: '#/components/schemas/AuthenticatorKeyPhone'
+          security_key: '#/components/schemas/AuthenticatorKeySecurityKey'
+          security_question: '#/components/schemas/AuthenticatorKeySecurityQuestion'
+          symantec_vip: '#/components/schemas/AuthenticatorKeySymantecVip'
+          smart_card_idp: '#/components/schemas/AuthenticatorKeySmartCard'
+          webauthn: '#/components/schemas/AuthenticatorKeyWebauthn'
+          yubikey_token: '#/components/schemas/AuthenticatorKeyYubikey'
     AuthenticatorEnrollmentPolicy:
       allOf:
         - $ref: '#/components/schemas/Policy'
@@ -48325,7 +48051,22 @@ components:
           $ref: '#/components/schemas/AuthenticatorMethodType'
         _links:
           $ref: '#/components/schemas/LinksSelfAndLifecycle'
-      discriminator: *ref_5
+      discriminator:
+        propertyName: type
+        mapping:
+          sms: '#/components/schemas/AuthenticatorMethodSimple'
+          voice: '#/components/schemas/AuthenticatorMethodSimple'
+          email: '#/components/schemas/AuthenticatorMethodSimple'
+          push: '#/components/schemas/AuthenticatorMethodPush'
+          signed_nonce: '#/components/schemas/AuthenticatorMethodSignedNonce'
+          totp: '#/components/schemas/AuthenticatorMethodTotp'
+          otp: '#/components/schemas/AuthenticatorMethodOtp'
+          password: '#/components/schemas/AuthenticatorMethodSimple'
+          webauthn: '#/components/schemas/AuthenticatorMethodWebAuthn'
+          security_question: '#/components/schemas/AuthenticatorMethodSimple'
+          idp: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
+          duo: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
+          cert: '#/components/schemas/AuthenticatorMethodWithVerifiableProperties'
     AuthenticatorMethodConstraint:
       description: 'Limits the authenticators that can be used for a given method. Currently, only the `otp` method supports constraints, and Google authenticator (key : ''google_otp'') is the only allowed authenticator.'
       type: object
@@ -49075,7 +48816,13 @@ components:
       required:
         - name
         - type
-      discriminator: *ref_7
+      discriminator:
+        propertyName: type
+        mapping:
+          ANOMALOUS_LOCATION: '#/components/schemas/BehaviorRuleAnomalousLocation'
+          ANOMALOUS_IP: '#/components/schemas/BehaviorRuleAnomalousIP'
+          ANOMALOUS_DEVICE: '#/components/schemas/BehaviorRuleAnomalousDevice'
+          VELOCITY: '#/components/schemas/BehaviorRuleVelocity'
     BehaviorRuleAnomalousDevice:
       allOf:
         - $ref: '#/components/schemas/BehaviorRule'
@@ -50634,7 +50381,14 @@ components:
           $ref: '#/components/schemas/Platform'
         _links:
           $ref: '#/components/schemas/LinksSelf'
-      discriminator: *ref_9
+      discriminator:
+        propertyName: platform
+        mapping:
+          WINDOWS: '#/components/schemas/DeviceAssuranceWindowsPlatform'
+          MACOS: '#/components/schemas/DeviceAssuranceMacOSPlatform'
+          CHROMEOS: '#/components/schemas/DeviceAssuranceChromeOSPlatform'
+          IOS: '#/components/schemas/DeviceAssuranceIOSPlatform'
+          ANDROID: '#/components/schemas/DeviceAssuranceAndroidPlatform'
     DeviceAssuranceAndroidPlatform:
       allOf:
         - $ref: '#/components/schemas/DeviceAssurance'
@@ -52764,7 +52518,7 @@ components:
                 }
               ```json
 
-            The `oneOf` key is only supported in conjunction with `enum` and provides a mechanism to return a display name for the `enum` value.  
+            The `oneOf` key is only supported in conjunction with `enum` and provides a mechanism to return a display name for the `enum` value.
         permissions:
           description: Access control permissions for the property
           items:
@@ -54644,9 +54398,6 @@ components:
           readOnly: true
     LogDevice:
       description: The entity that describes a device enrolled with passwordless authentication using Okta Verify.
-      example:
-        LogDeviceObject:
-          $ref: '#/components/examples/LogDeviceObject'
       type: object
       properties:
         device_integrator:
@@ -54920,7 +54671,11 @@ components:
         - status
         - type
         - _links
-      discriminator: *ref_11
+      discriminator:
+        propertyName: type
+        mapping:
+          aws_eventbridge: '#/components/schemas/LogStreamAws'
+          splunk_cloud_logstreaming: '#/components/schemas/LogStreamSplunk'
     LogStreamActivateLink:
       allOf:
         - $ref: '#/components/schemas/LogStreamLinkObject'
@@ -54990,7 +54745,11 @@ components:
       required:
         - name
         - type
-      discriminator: *ref_25
+      discriminator:
+        propertyName: type
+        mapping:
+          aws_eventbridge: '#/components/schemas/LogStreamAwsPutSchema'
+          splunk_cloud_logstreaming: '#/components/schemas/LogStreamSplunkPutSchema'
     LogStreamSchema:
       type: object
       properties:
@@ -55328,7 +55087,12 @@ components:
       required:
         - name
         - type
-      discriminator: *ref_23
+      discriminator:
+        propertyName: type
+        mapping:
+          IP: '#/components/schemas/IPNetworkZone'
+          DYNAMIC: '#/components/schemas/DynamicNetworkZone'
+          DYNAMIC_V2: '#/components/schemas/EnhancedDynamicNetworkZone'
     NetworkZoneAddress:
       description: Specifies the value of an IP address expressed using either `range` or `CIDR` form.
       type: object
@@ -57486,7 +57250,11 @@ components:
       properties:
         contactType:
           $ref: '#/components/schemas/OrgContactType'
-      discriminator: *ref_26
+      discriminator:
+        propertyName: contactType
+        mapping:
+          BILLING: '#/components/schemas/orgBillingContactType'
+          TECHNICAL: '#/components/schemas/orgTechnicalContactType'
     OrgContactUser:
       type: object
       properties:
@@ -58310,6 +58078,8 @@ components:
       properties:
         domains:
           type: array
+          items:
+            type: string
           description: List of blocked email domains
     PinRequest:
       description: Pin Request
@@ -58390,7 +58160,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-          default: Assigned
         description:
           description: Description of the Policy
           type: string
@@ -58399,13 +58168,11 @@ components:
           description: Identifier of the Policy
           type: string
           readOnly: true
-          default: Assigned
         lastUpdated:
           description: Timestamp when the Policy was last modified
           type: string
           format: date-time
           readOnly: true
-          default: Assigned
         name:
           description: Name of the Policy
           type: string
@@ -58432,7 +58199,17 @@ components:
       required:
         - name
         - type
-      discriminator: *ref_13
+      discriminator:
+        propertyName: type
+        mapping:
+          ACCESS_POLICY: '#/components/schemas/AccessPolicy'
+          IDP_DISCOVERY: '#/components/schemas/IdpDiscoveryPolicy'
+          MFA_ENROLL: '#/components/schemas/AuthenticatorEnrollmentPolicy'
+          OKTA_SIGN_ON: '#/components/schemas/OktaSignOnPolicy'
+          PASSWORD: '#/components/schemas/PasswordPolicy'
+          PROFILE_ENROLLMENT: '#/components/schemas/ProfileEnrollmentPolicy'
+          POST_AUTH_SESSION: '#/components/schemas/PostAuthSessionPolicy'
+          ENTITY_RISK: '#/components/schemas/EntityRiskPolicy'
     PolicyAccess:
       type: string
       enum:
@@ -58657,7 +58434,18 @@ components:
           $ref: '#/components/schemas/PolicyRuleType'
         _links:
           $ref: '#/components/schemas/PolicyLinks'
-      discriminator: *ref_15
+      discriminator:
+        propertyName: type
+        mapping:
+          ACCESS_POLICY: '#/components/schemas/AccessPolicyRule'
+          PASSWORD: '#/components/schemas/PasswordPolicyRule'
+          PROFILE_ENROLLMENT: '#/components/schemas/ProfileEnrollmentPolicyRule'
+          RESOURCE_ACCESS: '#/components/schemas/AuthorizationServerPolicyRule'
+          SIGN_ON: '#/components/schemas/OktaSignOnPolicyRule'
+          IDP_DISCOVERY: '#/components/schemas/IdpDiscoveryPolicyRule'
+          POST_AUTH_SESSION: '#/components/schemas/PostAuthSessionPolicyRule'
+          ENTITY_RISK: '#/components/schemas/EntityRiskPolicyRule'
+          MFA_ENROLL: '#/components/schemas/AuthenticatorEnrollmentPolicyRule'
     PolicyRuleActions:
       type: object
     PolicyRuleActionsEnroll:
@@ -59922,7 +59710,11 @@ components:
           $ref: '#/components/schemas/ProviderType'
         _links:
           $ref: '#/components/schemas/LinksSelf'
-      discriminator: *ref_17
+      discriminator:
+        propertyName: providerType
+        mapping:
+          APNS: '#/components/schemas/APNSPushProvider'
+          FCM: '#/components/schemas/FCMPushProvider'
     RateLimitAdminNotifications:
       title: RateLimitAdminNotifications
       description: ''
@@ -60134,6 +59926,8 @@ components:
       properties:
         commands:
           type: array
+          items:
+            type: string
     RegistrationInlineHookSSRData:
       allOf:
         - $ref: '#/components/schemas/InlineHookBasePayload'
@@ -60259,7 +60053,12 @@ components:
             - call
             - email
             - sms
-      discriminator: *ref_21
+      discriminator:
+        propertyName: factorType
+        mapping:
+          call: '#/components/schemas/UserFactorCall'
+          email: '#/components/schemas/UserFactorEmail'
+          sms: '#/components/schemas/UserFactorSMS'
     ResetPasswordToken:
       type: object
       properties:
@@ -60975,7 +60774,7 @@ components:
             The `commands` object is where you tell Okta to add additional claims to the assertion or to modify the existing assertion statements.
 
             `commands` is an array, allowing you to send multiple commands. In each array element, include a `type` property and a `value` property. The `type` property is where you specify which of the supported commands you want to execute, and `value` is where you supply an operand for that command.
-            In the case of the SAML assertion inline hook, the `value` property is itself a nested object, in which you specify a particular operation, a path to act on, and a value. 
+            In the case of the SAML assertion inline hook, the `value` property is itself a nested object, in which you specify a particular operation, a path to act on, and a value.
           type: array
           items:
             type: object
@@ -63434,11 +63233,11 @@ components:
 
                         <details>
                         <summary>Add a claim</summary>
-                          
+                        
                           Add a claim
 
                           **Existing JSON**
-                          
+                        
                           ```
                           {
                             "employeeId": "00u12345678"
@@ -63473,9 +63272,9 @@ components:
                             ]
                           }
                           ```
-                          
+                        
                           **Updated JSON**
-                          
+                        
                           ```
                           {
                             "employeeId": "00u12345678",
@@ -63489,11 +63288,11 @@ components:
 
                         <details>
                         <summary>Add new members to existing JSON objects</summary>
-                          
+                        
                           If you have a JSON object in a claim called `employee_profile`, and you want to add the `department_id` member to the claim, the existing JSON is updated by specifying the claim in the path, followed by the name of the object member.
 
                           **Existing JSON**
-                          
+                        
                           ```
                           {
                             "employee_profile": {
@@ -63521,9 +63320,9 @@ components:
                             ]
                           }
                           ```
-                          
+                        
                           **Updated JSON**
-                          
+                        
                           ```
                           {
                             "employee_profile": {
@@ -63539,11 +63338,11 @@ components:
 
                         <details>
                         <summary>Add new elements to existing arrays</summary>
-                          
+                        
                           Append an element to an array by specifying the name of the array, followed by the index where you want to insert the element in the path. Alternatively, you can specify the array name followed by a hyphen (-) in the path to append an element at the end of the array. For example, you have an array that contains the user's preferred airports, and you want to add a new airport to the array. The existing target JSON object is updated by specifying the claim in the path, followed by the index of where to insert the claim.
-                          
+                        
                           **Existing JSON**
-                          
+                        
                           ```
                           {
                             "preferred_airports":[
@@ -63574,7 +63373,7 @@ components:
                           ```
 
                           **Updated JSON**
-                          
+                        
                           ```
                           {
                             "preferred_airports":[
@@ -63585,7 +63384,7 @@ components:
                             ]
                           }
                           ```
-                          
+                        
                           > **Note:** If you attempt to add an element within an array that doesn't exist or specify an invalid index, the entire PATCH fails and errors are logged in the token hooks events.
                         </details>
 
@@ -63595,7 +63394,7 @@ components:
                         <summary>Modify an existing claim</summary>
 
                           You can modify (`replace`) existing custom claims or OIDC standard profile claims, such as `birthdate` and `locale`. You can't, however, modify any system-specific claims, such as `iss` or `ver`. Also, you can't modify a claim that isn't currently part of the token in the request payload. Attempting to modify a system-specific claim or using an invalid operation results in the entire PATCH failing and errors logged in the token hooks events.
-                          
+                        
                           See [Access Tokens Scopes and Claims](/openapi/okta-oauth/guides/overview/#access-token-scopes-and-claims) for the list of access token-reserved claims that you can't modify.
 
                           > **Note:** Although the `aud` and `sub` claims are listed as reserved claims, you can modify those claims in access tokens. You can't modify these claims in ID tokens.
@@ -63645,16 +63444,16 @@ components:
                             "external_guid": "D1495796-G98E-585C-959E-1269CD6766B8"
                           }
                           ```
-                          
+                        
                         </details>
 
                         <details>
                         <summary>Modify members within existing JSON objects and arrays</summary>
-                          
+                        
                           Use the `replace` operation to modify members within JSON objects and elements within arrays. For example, you have a JSON object in a claim called `employee_profile`, and you want to update the email address of the employee. The existing target JSON object is updated by specifying the claim in the path, followed by the name of the object member that you want to modify.
 
                           **Existing target JSON object**
-                          
+                        
                           ```
                           {
                             "employee_profile": {
@@ -63685,7 +63484,7 @@ components:
                           ```
 
                           **Updated JSON**
-                          
+                        
                           ```
                           {
                             "employee_profile": {
@@ -63697,7 +63496,7 @@ components:
                           ```
 
                           > **Note:** If you attempt to modify a member within a JSON object that doesn't exist or use an invalid operation, the entire PATCH fails and errors are logged in the token hooks events.
-                          
+                        
                           Similarly, you can replace elements in an array by specifying the array name and the valid index of the element that you want to replace in the path.
                         </details>
 
@@ -63783,9 +63582,9 @@ components:
                         <summary>Remove members from existing arrays</summary>
 
                           Use the `remove` operation to remove members from existing arrays. For example, you have an array that contains the user's preferred airports, and you want to remove an airport from the array. The existing target JSON object is updated by specifying the array name followed by the index of the element that you want to remove. You don't need to specify a value for the remove operation, but you can specify `null` as the value if you want.
-                          
+                        
                           **Existing target JSON object**
-                          
+                        
                           ```
                           {
                             "preferred_airports": [
@@ -63796,7 +63595,7 @@ components:
                               ]
                           }
                           ```
-                          
+                        
                           **Operation**
 
                           ```
@@ -63816,7 +63615,7 @@ components:
                           ```
 
                           **Updated JSON**
-                          
+                        
                           ```
                           {
                             "preferred_airports": [
@@ -64629,7 +64428,22 @@ components:
           readOnly: true
         _links:
           $ref: '#/components/schemas/UserFactorLinks'
-      discriminator: *ref_19
+      discriminator:
+        propertyName: factorType
+        mapping:
+          call: '#/components/schemas/UserFactorCall'
+          email: '#/components/schemas/UserFactorEmail'
+          push: '#/components/schemas/UserFactorPush'
+          question: '#/components/schemas/UserFactorSecurityQuestion'
+          sms: '#/components/schemas/UserFactorSMS'
+          token: '#/components/schemas/UserFactorToken'
+          token:hardware: '#/components/schemas/UserFactorTokenHardware'
+          token:hotp: '#/components/schemas/UserFactorTokenHOTP'
+          token:software:totp: '#/components/schemas/UserFactorTokenSoftwareTOTP'
+          u2f: '#/components/schemas/UserFactorU2F'
+          web: '#/components/schemas/UserFactorWeb'
+          webauthn: '#/components/schemas/UserFactorWebAuthn'
+          hotp: '#/components/schemas/UserFactorTokenHOTP'
     UserFactorActivatePush:
       description: Activation requests have a short lifetime and expire if the activation isn't completed before the indicated timestamp. If the activation expires, use the returned `activate` link to restart the process.
       type: object
@@ -64724,7 +64538,16 @@ components:
             - $ref: '#/components/schemas/LinksSelf'
             - $ref: '#/components/schemas/LinksUser'
             - $ref: '#/components/schemas/LinksVerify'
-      discriminator: *ref_27
+      discriminator:
+        propertyName: factorType
+        mapping:
+          call: '#/components/schemas/UserFactorCall'
+          email: '#/components/schemas/UserFactorEmail'
+          sms: '#/components/schemas/UserFactorSMS'
+          push: '#/components/schemas/UserFactorPush'
+          token:software:totp: '#/components/schemas/UserFactorTokenSoftwareTOTP'
+          u2f: '#/components/schemas/UserFactorU2F'
+          webauthn: '#/components/schemas/UserFactorWebAuthn'
     UserFactorCall:
       title: call
       allOf:
@@ -64855,7 +64678,13 @@ components:
             - SUCCESS
             - REJECTED
             - TIMEOUT
-      discriminator: *ref_28
+      discriminator:
+        propertyName: factorResult
+        mapping:
+          WAITING: '#/components/schemas/UserFactorPushTransactionWaiting'
+          SUCCESS: '#/components/schemas/UserFactorPushTransaction'
+          REJECTED: '#/components/schemas/UserFactorPushTransactionRejected'
+          TIMEOUT: '#/components/schemas/UserFactorPushTransactionTimeout'
     UserFactorPushTransactionRejected:
       allOf:
         - $ref: '#/components/schemas/UserFactorPushTransaction'
