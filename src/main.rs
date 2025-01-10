@@ -1,18 +1,11 @@
 mod okta;
 use ::okta::{types::User, users::Users, ClientError};
 use okta::client::OktaClient;
-use serde_json;
 use skim::prelude::*;
 use std::borrow::Cow;
 
 struct UserItem {
     user: User,
-}
-
-impl UserItem {
-    fn get_raw_user(&self) -> &User {
-        &self.user
-    }
 }
 
 impl SkimItem for UserItem {
@@ -28,18 +21,7 @@ impl SkimItem for UserItem {
 
     fn preview(&self, _: PreviewContext) -> ItemPreview {
         let preview_text = if let Some(profile) = &self.user.profile {
-            format!(
-                "Login: {}\nEmail: {}\nFirst Name: {}\nLast Name: {}\nStatus: {}",
-                profile.login,
-                profile.email,
-                profile.first_name,
-                profile.last_name,
-                self.user
-                    .status
-                    .as_ref()
-                    .map(|s| s.to_string())
-                    .unwrap_or_else(|| "Unknown".to_string())
-            )
+            format!("{:#?}", profile)
         } else {
             "No profile information available".to_string()
         };
@@ -54,7 +36,7 @@ async fn main() {
     match list_users(&client).await {
         Ok(users) => {
             let options = SkimOptionsBuilder::default()
-                .height("50%".to_string())
+                .height("80%".to_string())
                 .multi(true)
                 .preview(Some("".to_string()))
                 .build()
@@ -69,10 +51,7 @@ async fn main() {
 
             if let Some(output) = Skim::run_with(&options, Some(rx_item)) {
                 for item in output.selected_items.iter() {
-                    // Cast to our UserItem type and get the raw user object
-                    if let Some(user_item) = item.as_any().downcast_ref::<UserItem>() {
-                        println!("{:#?}", user_item.get_raw_user());
-                    }
+                    println!("{}", item.output());
                 }
             }
         }
