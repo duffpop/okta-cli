@@ -1222,6 +1222,7 @@ name = "okta-cli"
 version = "0.1.0"
 dependencies = [
  "okta",
+ "serde_json",
  "skim",
  "tokio",
 ]

@@ -7,3 +7,4 @@ edition = "2021"
 skim = "0.15.7"
 okta = "0.7.1"
 tokio = { version = "1.43", features = ["full"] }
+serde_json = "1.0.135"

@@ -1,11 +1,18 @@
 mod okta;
 use ::okta::{types::User, users::Users, ClientError};
 use okta::client::OktaClient;
+use serde_json;
 use skim::prelude::*;
 use std::borrow::Cow;
 
 struct UserItem {
     user: User,
+}
+
+impl UserItem {
+    fn get_raw_user(&self) -> &User {
+        &self.user
+    }
 }
 
 impl SkimItem for UserItem {
@@ -62,7 +69,10 @@ async fn main() {
 
             if let Some(output) = Skim::run_with(&options, Some(rx_item)) {
                 for item in output.selected_items.iter() {
-                    println!("{}", item.output());
+                    // Cast to our UserItem type and get the raw user object
+                    if let Some(user_item) = item.as_any().downcast_ref::<UserItem>() {
+                        println!("{:#?}", user_item.get_raw_user());
+                    }
                 }
             }
         }
